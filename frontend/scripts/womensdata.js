@@ -7,7 +7,17 @@ import footer from "./footer.js";
 document.querySelector("#footer").innerHTML = footer();
 
   const productList = document.querySelector(".product-items");
-  appendproducts(womensData, productList);
+  var Data=async function(){
+    var  res=await fetch("http://localhost:5000/womensdataentry");
+    var fres=await res.json();
+    
+    console.log("mongodata:",fres);
+    appendproducts(fres, productList);
+    return fres;
+    
+  }
+  Data();
+ 
   
   var sorting = document.querySelector("#select-sorting");
   sorting.addEventListener("change", () => {
