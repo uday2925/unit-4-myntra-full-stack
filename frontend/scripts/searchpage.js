@@ -12,7 +12,16 @@ const productList = document.querySelector(".product-items");
 let query = localStorage.getItem('searchQuery');
 
 
-
+var searchData=async function(){
+  var  res=await fetch("http://localhost:5000/womensdataentry");
+  var fres=await res.json();
+  
+  console.log("mongodata:",fres);
+  appendproducts(fres, productList);
+  return fres;
+  
+}
+searchData();
 //Adding the query to search Data
 searchData = searchData.filter(function(elem) {
     if(elem.productName.includes(query) || elem.productName.includes(query.toUpperCase())) {
@@ -21,7 +30,7 @@ searchData = searchData.filter(function(elem) {
 })
 
 
-appendproducts(searchData, productList);
+
 var sorting = document.querySelector("#select-sorting");
 sorting.addEventListener("change", () => {
   var selected = document.querySelector("#select-sorting").value;

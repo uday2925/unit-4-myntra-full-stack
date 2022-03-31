@@ -20,7 +20,18 @@ sidebar2.addEventListener("click", ()=>{
 
 
   const productList = document.querySelector(".product-items");
-  appendproducts(kidsData, productList);
+
+  var Data=async function(){
+    var  res=await fetch("http://localhost:5000/kidsdataentry");
+    var fres=await res.json();
+    
+    console.log("mongodata:",fres);
+    appendproducts(fres, productList);
+    return fres;
+    
+  }
+  Data();
+  
 
   var sorting = document.querySelector("#select-sorting");
   sorting.addEventListener("change", () => {
