@@ -2,6 +2,7 @@ import  {fetchUser, updateWishlist} from "./loginSystem.js";
 
 
 // var wishlistarr = JSON.parse(localStorage.getItem("Wishlist")) || [];
+
 function appendproducts(info, main) {
   let currentUser;
   let wishlist;
