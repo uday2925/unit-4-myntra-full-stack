@@ -13,7 +13,7 @@ let query = localStorage.getItem('searchQuery');
 
 
 var searchData=async function(){
-  var  res=await fetch("http://localhost:5000/womensdataentry");
+  var  res=await fetch("http://localhost:5000/searchpagedataentry");
   var fres=await res.json();
   
   console.log("mongodata:",fres);
@@ -22,35 +22,64 @@ var searchData=async function(){
   
 }
 searchData();
-//Adding the query to search Data
-searchData = searchData.filter(function(elem) {
+
+var searchData=async function(){
+  var  res=await fetch("http://localhost:5000/searchpagedataentry");
+  var fres=await res.json();
+  
+  console.log("mongodata:",fres);
+  fres = fres.filter(function(elem) {
     if(elem.productName.includes(query) || elem.productName.includes(query.toUpperCase())) {
         return elem;
     }
+   
 })
+ 
+ 
+  
+}
+searchData();
+//Adding the query to search Data
 
 
-
-var sorting = document.querySelector("#select-sorting");
+var searchData=async function(){
+  var  res=await fetch("http://localhost:5000/searchpagedataentry");
+  var fres=await res.json();
+  
+  console.log("mongodata:",fres);
+  var sorting = document.querySelector("#select-sorting");
 sorting.addEventListener("change", () => {
   var selected = document.querySelector("#select-sorting").value;
   if (selected == "high") {
-    searchData.sort(function (a, b) {
+       fres.sort(function (a, b) {
       return Number(b.price) - Number(a.price);
     });
   }
   if (selected == "low") {
     //ascending
-    searchData.sort(function (a, b) {
+       fres.sort(function (a, b) {
       return Number(a.price) - Number(b.price);
     });
   }
 
-  appendproducts(searchData, productList);
+  appendproducts(fres, productList);
 });
-var check1 = document.querySelector("input[name=check1]");
+ 
+  
+}
+searchData();
+
+
+
+
+var searchData=async function(){
+  var  res=await fetch("http://localhost:5000/searchpagedataentry");
+  var fres=await res.json();
+  
+  console.log("mongodata:",fres);
+  var check1 = document.querySelector("input[name=check1]");
 check1.addEventListener("change", () => {
-  let data = searchData.filter(function (elem) {
+  let data = fres.filter(function (elem) {
     if (elem.itemCategory == "T-Shirt") {
       return elem;
     }
@@ -60,7 +89,7 @@ check1.addEventListener("change", () => {
 
 var check2 = document.querySelector("input[name=check2]");
 check2.addEventListener("change", () => {
-  let data = searchData.filter(function (elem) {
+  let data = fres.filter(function (elem) {
     if (elem.itemCategory == "Knitwear") {
       return elem;
     }
@@ -70,7 +99,7 @@ check2.addEventListener("change", () => {
 
 var check3 = document.querySelector("input[name=check3]");
 check3.addEventListener("change", () => {
-  let data = searchData.filter(function (elem) {
+  let data = fres.filter(function (elem) {
     if (elem.itemCategory == "Overshirt") {
       return elem;
     }
@@ -79,7 +108,7 @@ check3.addEventListener("change", () => {
 });
 var check4 = document.querySelector("input[name=check4]");
 check4.addEventListener("change", () => {
-  let data = searchData.filter(function (elem) {
+  let data = fres.filter(function (elem) {
     if (elem.itemCategory == "Shirt") {
       return elem;
     }
@@ -88,7 +117,7 @@ check4.addEventListener("change", () => {
 });
 var check5 = document.querySelector("input[name=check5]");
 check5.addEventListener("change", () => {
-  let data = searchData.filter(function (elem) {
+  let data = fres.filter(function (elem) {
     if (elem.itemCategory == "Zara_Athleticz") {
       return elem;
     }
@@ -97,7 +126,7 @@ check5.addEventListener("change", () => {
 });
 var check6 = document.querySelector("input[name=check6]");
 check6.addEventListener("change", () => {
-  let data = searchData.filter(function (elem) {
+  let data = fres.filter(function (elem) {
     if (elem.itemCategory == "Jackets") {
       return elem;
     }
@@ -106,7 +135,7 @@ check6.addEventListener("change", () => {
 });
 var check7 = document.querySelector("input[name=check7]");
 check7.addEventListener("change", () => {
-  let data = searchData.filter(function (elem) {
+  let data = fres.filter(function (elem) {
     if (elem.itemCategory == "Shorts") {
       return elem;
     }
@@ -115,7 +144,7 @@ check7.addEventListener("change", () => {
 });
 var check8 = document.querySelector("input[name=check8]");
 check8.addEventListener("change", () => {
-  let data = searchData.filter(function (elem) {
+  let data = fres.filter(function (elem) {
     if (elem.itemCategory == "Trousers") {
       return elem;
     }
@@ -124,7 +153,7 @@ check8.addEventListener("change", () => {
 });
 var check9 = document.querySelector("input[name=check9]");
 check9.addEventListener("change", () => {
-  let data = searchData.filter(function (elem) {
+  let data = fres.filter(function (elem) {
     if (elem.Brand == "Puma") {
       return elem;
     }
@@ -133,7 +162,7 @@ check9.addEventListener("change", () => {
 });
 var check10 = document.querySelector("input[name=check10]");
 check10.addEventListener("change", () => {
-  let data = searchData.filter(function (elem) {
+  let data = fres.filter(function (elem) {
     if (elem.Brand == "HRX by Hrithik Rosha") {
       return elem;
     }
@@ -142,7 +171,7 @@ check10.addEventListener("change", () => {
 });
 var check11 = document.querySelector("input[name=check11]");
 check11.addEventListener("change", () => {
-  let data = searchData.filter(function (elem) {
+  let data = fres.filter(function (elem) {
     if (elem.Brand == "FILA") {
       return elem;
     }
@@ -151,7 +180,7 @@ check11.addEventListener("change", () => {
 });
 var check12 = document.querySelector("input[name=check12]");
 check12.addEventListener("change", () => {
-  let data = searchData.filter(function (elem) {
+  let data = fres.filter(function (elem) {
     if (elem.Brand == "hummel") {
       return elem;
     }
@@ -160,7 +189,7 @@ check12.addEventListener("change", () => {
 });
 var check13 = document.querySelector("input[name=check13]");
 check13.addEventListener("change", () => {
-  let data = searchData.filter(function (elem) {
+  let data = fres.filter(function (elem) {
     if (elem.Brand == "ADIDAS") {
       return elem;
     }
@@ -169,7 +198,7 @@ check13.addEventListener("change", () => {
 });
 var check14 = document.querySelector("input[name=check14]");
 check14.addEventListener("change", () => {
-  let data = searchData.filter(function (elem) {
+  let data = fres.filter(function (elem) {
     if (elem.Brand == "Lotto") {
       return elem;
     }
@@ -179,7 +208,7 @@ check14.addEventListener("change", () => {
 
 var check15 = document.querySelector("input[name=check15]");
 check15.addEventListener("change", () => {
-  let data = searchData.filter(function (elem) {
+  let data = fres.filter(function (elem) {
     if (elem.Brand == "Nike") {
       return elem;
     }
@@ -189,7 +218,7 @@ check15.addEventListener("change", () => {
 
 var check16 = document.querySelector("input[name=check16]");
 check16.addEventListener("change", () => {
-  let data = searchData.filter(function (elem) {
+  let data = fres.filter(function (elem) {
     if (elem.Brand == "one8 x PUMA") {
       return elem;
     }
@@ -199,7 +228,7 @@ check16.addEventListener("change", () => {
 
 var check17 = document.querySelector("input[name=check17]");
 check17.addEventListener("change", () => {
-  let data = searchData.filter(function (elem) {
+  let data = fres.filter(function (elem) {
     if (elem.price > 0 && elem.price < 1000) {
       return elem;
     }
@@ -208,7 +237,7 @@ check17.addEventListener("change", () => {
 });
 var check18 = document.querySelector("input[name=check18]");
 check18.addEventListener("change", () => {
-  let data = searchData.filter(function (elem) {
+  let data = fres.filter(function (elem) {
     if (elem.price > 1000 && elem.price < 1500) {
       return elem;
     }
@@ -218,7 +247,7 @@ check18.addEventListener("change", () => {
 
 var check19 = document.querySelector("input[name=check19]");
 check19.addEventListener("change", () => {
-  let data = searchData.filter(function (elem) {
+  let data = fres.filter(function (elem) {
     if (elem.price > 1500 && elem.price < 2000) {
       return elem;
     }
@@ -228,10 +257,15 @@ check19.addEventListener("change", () => {
 
 var check20 = document.querySelector("input[name=check20]");
 check20.addEventListener("change", () => {
-  let data = searchData.filter(function (elem) {
+  let data = fres.filter(function (elem) {
     if (elem.price > 2000) {
       return elem;
     }
   });
   appendproducts(data, productList);
 });
+ 
+  
+}
+searchData();
+

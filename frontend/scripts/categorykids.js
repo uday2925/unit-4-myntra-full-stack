@@ -32,27 +32,41 @@ sidebar2.addEventListener("click", ()=>{
   }
   Data();
   
+  var Data=async function(){
+    var  res=await fetch("http://localhost:5000/kidsdataentry");
+    var fres=await res.json();
+    
+    console.log("mongodata:",fres);
+    var sorting = document.querySelector("#select-sorting");
+    sorting.addEventListener("change", () => {
+      var selected = document.querySelector("#select-sorting").value;
+      if (selected == "high") {
+          fres.sort(function (a, b) {
+          return Number(b.price) - Number(a.price);
+        });
+      }
+      if (selected == "low") {
+        //ascending
+          fres.sort(function (a, b) {
+          return Number(a.price) - Number(b.price);
+        });
+      }
+  
+      appendproducts(fres, productList);
+    });
+   
+    
+  }
+  Data();
 
-  var sorting = document.querySelector("#select-sorting");
-  sorting.addEventListener("change", () => {
-    var selected = document.querySelector("#select-sorting").value;
-    if (selected == "high") {
-      kidsData.sort(function (a, b) {
-        return Number(b.price) - Number(a.price);
-      });
-    }
-    if (selected == "low") {
-      //ascending
-      kidsData.sort(function (a, b) {
-        return Number(a.price) - Number(b.price);
-      });
-    }
-
-    appendproducts(kidsData, productList);
-  });
-  var check1 = document.querySelector("input[name=check1]");
+  var Data=async function(){
+    var  res=await fetch("http://localhost:5000/kidsdataentry");
+    var fres=await res.json();
+    
+    console.log("mongodata:",fres);
+    var check1 = document.querySelector("input[name=check1]");
   check1.addEventListener("change", () => {
-    let data = kidsData.filter(function (elem) {
+    let data = fres.filter(function (elem) {
       if (elem.itemCategory == "T-SHIRTS") {
         return elem;
       }
@@ -62,7 +76,7 @@ sidebar2.addEventListener("click", ()=>{
 
   var check2 = document.querySelector("input[name=check2]");
   check2.addEventListener("change", () => {
-    let data = kidsData.filter(function (elem) {
+    let data = fres.filter(function (elem) {
       if (elem.itemCategory == "DRESSES | JUMPSUITS") {
         return elem;
       }
@@ -72,7 +86,7 @@ sidebar2.addEventListener("click", ()=>{
 
   var check3 = document.querySelector("input[name=check3]");
   check3.addEventListener("change", () => {
-    let data = kidsData.filter(function (elem) {
+    let data = fres.filter(function (elem) {
       if (elem.itemCategory == "SWEATSHIRTS | JACKETS") {
         return elem;
       }
@@ -81,7 +95,7 @@ sidebar2.addEventListener("click", ()=>{
   });
   var check4 = document.querySelector("input[name=check4]");
   check4.addEventListener("change", () => {
-    let data = kidsData.filter(function (elem) {
+    let data = fres.filter(function (elem) {
       if (elem.itemCategory == "TROUSERS | JEANS") {
         return elem;
       }
@@ -90,7 +104,7 @@ sidebar2.addEventListener("click", ()=>{
   });
   var check5 = document.querySelector("input[name=check5]");
   check5.addEventListener("change", () => {
-    let data = kidsData.filter(function (elem) {
+    let data = fres.filter(function (elem) {
       if (elem.itemCategory == "SHIRTS") {
         return elem;
       }
@@ -99,7 +113,7 @@ sidebar2.addEventListener("click", ()=>{
   });
   var check6 = document.querySelector("input[name=check6]");
   check6.addEventListener("change", () => {
-    let data = kidsData.filter(function (elem) {
+    let data = fres.filter(function (elem) {
       if (elem.Brand == "max") {
         return elem;
       }
@@ -108,7 +122,7 @@ sidebar2.addEventListener("click", ()=>{
   });
   var check7 = document.querySelector("input[name=check7]");
   check7.addEventListener("change", () => {
-    let data = kidsData.filter(function (elem) {
+    let data = fres.filter(function (elem) {
       if (elem.Brand == "YK") {
         return elem;
       }
@@ -117,7 +131,7 @@ sidebar2.addEventListener("click", ()=>{
   });
   var check8 = document.querySelector("input[name=check8]");
   check8.addEventListener("change", () => {
-    let data = kidsData.filter(function (elem) {
+    let data = fres.filter(function (elem) {
       if (elem.Brand == "Pantaloons Junior") {
         return elem;
       }
@@ -126,7 +140,7 @@ sidebar2.addEventListener("click", ()=>{
   });
   var check9 = document.querySelector("input[name=check9]");
   check9.addEventListener("change", () => {
-    let data = kidsData.filter(function (elem) {
+    let data = fres.filter(function (elem) {
       if (elem.Brand == "CUTECUMBER") {
         return elem;
       }
@@ -135,7 +149,7 @@ sidebar2.addEventListener("click", ()=>{
   });
   var check10 = document.querySelector("input[name=check10]");
   check10.addEventListener("change", () => {
-    let data = kidsData.filter(function (elem) {
+    let data = fres.filter(function (elem) {
       if (elem.Brand == "A.T.U.N") {
         return elem;
       }
@@ -144,7 +158,7 @@ sidebar2.addEventListener("click", ()=>{
   });
   var check11 = document.querySelector("input[name=check11]");
   check11.addEventListener("change", () => {
-    let data = kidsData.filter(function (elem) {
+    let data = fres.filter(function (elem) {
       if (elem.Brand == "Tiny Girl") {
         return elem;
       }
@@ -153,7 +167,7 @@ sidebar2.addEventListener("click", ()=>{
   });
   var check12 = document.querySelector("input[name=check12]");
   check12.addEventListener("change", () => {
-    let data = kidsData.filter(function (elem) {
+    let data = fres.filter(function (elem) {
       if (elem.Brand == "Wish Karo") {
         return elem;
       }
@@ -162,10 +176,15 @@ sidebar2.addEventListener("click", ()=>{
   });
   var check13 = document.querySelector("input[name=check13]");
   check13.addEventListener("change", () => {
-    let data = kidsData.filter(function (elem) {
+    let data = fres.filter(function (elem) {
       if (elem.Brand == "MINI KLUB") {
         return elem;
       }
     });
     appendproducts(data, productList);
   });
+    
+    
+  }
+  Data();
+  
